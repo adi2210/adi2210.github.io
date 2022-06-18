@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Alphabets</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/themify-icons.css"/>
+	<link rel="stylesheet" href="css/accordion.css"/>
+	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
+
+	
+	<link rel="stylesheet" href="css/style.css"/>
+	<script type="text/javascript" src="paper-full.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/1.1.28/howler.js"></script>
+	
+
+	<script type="text/paperscript" canvas="myCanvas">
+		var keyData = {
+			q: {
+				sound: new Howl({
+		  		urls: ['alphabet/Q.wav']
+				}),
+				color: '#1abc9c'
+			},
+			w: {
+				sound: new Howl({
+		  		urls: ['alphabet/W.wav']
+				}),
+				color: '#2ecc71'
+			},
+			e: {
+				sound: new Howl({
+		  		urls: ['alphabet/E.wav']
+				}),
+				color: '#3498db'
+			},
+			r: {
+				sound: new Howl({
+		  		urls: ['alphabet/R.wav']
+				}),
+				color: '#9b59b6'
+			},
+				t: {
+				sound: new Howl({
+		  		urls: ['alphabet/T.wav']
+				}),
+				color: '#34495e'
+			},
+			y: {
+				sound: new Howl({
+		  		urls: ['alphabet/Y.wav']
+				}),
+				color: '#16a085'
+			},
+			u: {
+				sound: new Howl({
+		  		urls: ['alphabet/U.wav']
+				}),
+				color: '#27ae60'
+			},
+			i: {
+				sound: new Howl({
+		  		urls: ['alphabet/I.wav']
+				}),
+				color: '#2980b9'
+			},
+			o: {
+				sound: new Howl({
+					urls: ['alphabet/O.wav']
+				}),
+				color: '#8e44ad'
+			},
+			p: {
+				sound: new Howl({
+		  		urls: ['alphabet/P.wav']
+				}),
+				color: '#2c3e50'
+			},
+			a: {
+				sound: new Howl({
+		  		urls: ['alphabet/A.wav']
+				}),
+				color: '#f1c40f'
+			},
+			s: {
+				sound: new Howl({
+		  		urls: ['alphabet/S.wav']
+				}),
+				color: '#e67e22'
+			},
+				d: {
+				sound: new Howl({
+		  		urls: ['alphabet/D.wav']
+				}),
+				color: '#e74c3c'
+			},
+			f: {
+				sound: new Howl({
+		  		urls: ['alphabet/F.wav']
+				}),
+				color: '#95a5a6'
+			},
+			g: {
+				sound: new Howl({
+		  		urls: ['alphabet/G.wav']
+				}),
+				color: '#f39c12'
+			},
+			h: {
+				sound: new Howl({
+		  		urls: ['alphabet/H.wav']
+				}),
+				color: '#d35400'
+			},
+			j: {
+				sound: new Howl({
+		  		urls: ['alphabet/J.wav']
+				}),
+				color: '#1abc9c'
+			},
+			k: {
+				sound: new Howl({
+		  		urls: ['alphabet/K.wav']
+				}),
+				color: '#2ecc71'
+			},
+			l: {
+				sound: new Howl({
+		  		urls: ['alphabet/L.wav']
+				}),
+				color: '#3498db'
+			},
+			z: {
+				sound: new Howl({
+		  		urls: ['alphabet/Z.wav']
+				}),
+				color: '#9b59b6'
+			},
+			x: {
+				sound: new Howl({
+		  		urls: ['alphabet/X.wav']
+				}),
+				color: '#34495e'
+			},
+			c: {
+				sound: new Howl({
+		  		urls: ['alphabet/C.wav']
+				}),
+				color: '#16a085'
+			},
+			v: {
+				sound: new Howl({
+		  		urls: ['alphabet/V.wav']
+				}),
+				color: '#27ae60'
+			},
+			b: {
+				sound: new Howl({
+		  		urls: ['alphabet/B.wav']
+				}),
+				color: '#2980b9'
+			},
+			n: {
+				sound: new Howl({
+					urls: ['alphabet/N.wav']
+				}),
+				color: '#8e44ad'
+			},
+			m: {
+				sound: new Howl({
+		  		urls: ['alphabet/M.wav']
+				}),
+				color: '#2c3e50'
+			}
+		}
+
+		var circles = [];
+
+		function onKeyDown(event) {
+			if(keyData[event.key]){
+				var maxPoint = new Point(view.size.width, view.size.height);
+				var randomPoint = Point.random();
+				var point = maxPoint * randomPoint;
+				var newCircle = new Path.Circle(point, 500)
+				newCircle.fillColor = keyData[event.key].color;
+				keyData[event.key].sound.play();
+				circles.push(newCircle);
+			}
+		}
+
+		function onFrame(event){
+      for(var i = 0; i < circles.length; i++){
+        circles[i].scale(0.9);
+        circles[i].fillColor.hue += 1;
+        if(circles[i].area < 1){
+        	circles[i].remove();
+          circles.splice(i, 1);
+          console.log(circles);
+        }
+      }
+    }
+	</script>
+	<script>
+  	function play(){
+       var audio1 = document.getElementById("sound1");
+      
+   		audio1.play();
+    }
+    function p(){
+       var audio1 = document.getElementById("sound1");
+      
+   		audio1.pause();
+   		audio1.currentTime=0;
+    }
+
+  	function play1(){
+       
+       var audio2 = document.getElementById("sound2");
+              audio2.play();
+  
+    }
+    function p1(){
+       var audio2 = document.getElementById("sound2");
+      
+   		audio2.pause();
+   		audio2.currentTime=0;
+    }
+
+    function play2(){
+       
+       var audio3 = document.getElementById("sound3");
+              audio3.play();
+  
+    }
+    function p2(){
+       var audio3 = document.getElementById("sound3");
+      
+   		audio3.pause();
+   		audio3.currentTime=0;
+    }
+
+    function play3(){
+       
+       var audio4 = document.getElementById("sound4");
+              audio4.play();
+  
+    }
+    function p3(){
+       var audio4 = document.getElementById("sound4");
+      
+   		audio4.pause();
+   		audio4.currentTime=0;
+    }
+
+    function play4(){
+       
+       var audio5 = document.getElementById("sound5");
+              audio5.play();
+  
+    }
+    function p4(){
+       var audio5 = document.getElementById("sound5");
+      
+   		audio5.pause();
+   		audio5.currentTime=0;
+    }
+
+    function play5(){
+       
+       var audio6 = document.getElementById("sound6");
+              audio6.play();
+  
+    }
+    function p5(){
+       var audio6 = document.getElementById("sound6");
+      
+   		audio6.pause();
+   		audio6.currentTime=0;
+    }
+   </script>
+	<style type="text/css">
+		canvas {
+	width: 100%;
+	height: 100%;
+	background: black;
+}
+
+body, html {
+ height: 100%;
+ margin: 0;
+ background-color: black;
+}
+	</style>
+</head>
+<body>
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+		<div class="menu-wrapper">
+		<div class="menu-switch" onmouseover="play4()" onmouseout="p4()">
+			<audio id="sound5" src="menu.mp3" ></audio>
+			<i class="ti-menu"></i>
+		</div>
+	</div>
+	<div class="side-menu-wrapper">
+		<div class="sm-header">
+			<div class="menu-close"  onmouseover="play5()" onmouseout="p5()">
+				<audio id="sound6" src="back.mp3" ></audio>
+				<i class="ti-arrow-left"></i>
+			</div>
+			<a href="index.html" class="site-logo">
+				<h3>LEARNING</h3>
+			</a>
+		</div>
+		<nav class="main-menu">
+			<ul>
+				<li><a href="index.html" onmouseover="play()" onmouseout="p()">HOME</a>
+					<audio id="sound1" src="home page.mp3" ></audio>
+				</li>
+				<li><a href="alpha.html" class="active" onmouseover="play1()" onmouseout="p1()">ALPHABET</a>
+					<audio id="sound2" src="Alphabet.mp3" ></audio>
+				</li>
+				<li><a href="circles.html" onmouseover="play2()" onmouseout="p2()">MUSIC</a>
+					<audio id="sound3" src="Music.mp3" ></audio>
+				</li>
+				<li><a href="text.html" onmouseover="play3()"  onmouseout="p3()">COMPOSE</a>
+					<audio id="sound4" src="composition.mp3" ></audio>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<section class="hero-section">
+	<div>
+	<canvas id="myCanvas" resize></canvas>
+</div>
+</section>
+
+<script src="js/vendor/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/imagesloaded.pkgd.min.js"></script>
+	<script src="js/isotope.pkgd.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/circle-progress.min.js"></script>
+	<script src="js/pana-accordion.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
